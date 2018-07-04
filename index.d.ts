@@ -17,6 +17,7 @@ import {
     LogEntryEvent,
     JSONRPCRequestPayload,
     JSONRPCResponsePayload,
+    TransactionTrace,
 } from 'ethereum-types';
 
 type MixedData = string | number | object | any[] | BigNumber.BigNumber;
@@ -151,12 +152,24 @@ declare namespace Web3 {
         utf8ToHex: () => any,
     }
 
+    interface SignedTransaction {
+        messageHash: string,
+        v: string,
+        r: string,
+        s: string,
+        rawTransaction: string
+    }
+
+    interface AccountApi {
+        signTransaction: (tx: Transaction, privateKey: string, callback?: (error: Error, signedTransaction: SignedTransaction) => void) => Promise<SignedTransaction>
+    }
+
     interface EthApi {
         coinbase: string;
         mining: boolean;
         hashrate: number;
         gasPrice: BigNumber.BigNumber;
-        accounts: string[];
+        accounts: AccountApi;
         blockNumber: number;
         defaultAccount?: string;
         defaultBlock: BlockParam;
