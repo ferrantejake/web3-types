@@ -9,5 +9,9 @@
     "typestub"
   ],
   "author": "Jake Ferrante",
-  "dependencies": {}
+  "dependencies": {
+    "@types/bignumber.js": "^5.0.0",
+    "bignumber.js": "^7.2.1",
+    "ethereum-types": "0.0.2"
+  }
 }
