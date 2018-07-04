@@ -25,29 +25,13 @@ declare class Web3 {
     public static providers: typeof providers;
     public currentProvider: Provider;
 
+    public utils: Web3.UtilsApi;
     public eth: Web3.EthApi;
     public personal: Web3.PersonalApi | undefined;
     public version: Web3.VersionApi;
     public net: Web3.NetApi;
 
     public constructor(provider?: Provider);
-
-    public isConnected(): boolean;
-    public setProvider(provider: Provider): void;
-    public reset(keepIsSyncing: boolean): void;
-    public toHex(data: MixedData): string;
-    public toAscii(hex: string): string;
-    public fromAscii(ascii: string, padding?: number): string;
-    public toDecimal(hex: string): number;
-    public fromDecimal(value: number | string): string;
-    public fromWei(value: number | string, unit: Unit): string;
-    public fromWei(value: BigNumber.BigNumber, unit: Unit): BigNumber.BigNumber;
-    public toWei(amount: number | string, unit: Unit): string;
-    public toWei(amount: BigNumber.BigNumber, unit: Unit): BigNumber.BigNumber;
-    public toBigNumber(value: number | string): BigNumber.BigNumber;
-    public isAddress(address: string): boolean;
-    public isChecksumAddress(address: string): boolean;
-    public sha3(value: string, options?: Web3.Sha3Options): string;
 }
 
 declare namespace providers {
@@ -81,6 +65,90 @@ declare namespace Web3 {
 
     interface Sha3Options {
         encoding: 'hex';
+    }
+
+    interface UtilsApi {
+        isConnected: () => boolean,
+        setProvider: (provider: Provider) => void,
+        reset: (keepIsSyncing: boolean) => void,
+        toHex: (data: MixedData) => string,
+        toAscii: (hex: string) => string,
+        fromAscii: (ascii: string, padding?: number) => string,
+        toDecimal: (hex: string) => number,
+        fromDecimal: (value: number | string) => string,
+        fromWei: (value: number | string, unit: Unit) => string,
+        // fromWei: (value: BigNumber.BigNumber, unit: Unit) => BigNumber.BigNumber,
+        toWei: (amount: number | string, unit: Unit) => string,
+        // toWei: (amount: BigNumber.BigNumber, unit: Unit) => BigNumber.BigNumber,
+        toBigNumber: (value: number | string) => BigNumber.BigNumber,
+        isAddress: (address: string) => boolean,
+        isChecksumAddress: (address: string) => boolean,
+        sha3: (value: string, options?: Web3.Sha3Options) => string
+
+
+
+        BN: () => any,
+        _: () => any,
+
+        _fireError: () => any,
+        _jsonInterfaceMethodToString: () => any,
+
+        asciiToHex: () => any,
+        bytesToHex: () => any,
+
+        checkAddressChecksum: () => any,
+        // fromAscii: () => any,
+
+        // fromDecimal: () => any,
+        fromUtf8: () => any,
+
+        // fromWei: () => any,
+        hexToAscii: () => any,
+
+        hexToBytes: () => any,
+        hexToNumber: () => any,
+
+        hexToNumberString: () => any,
+        hexToString: () => any,
+
+        hexToUtf8: () => any,
+        // isAddress: () => any,
+
+        isBN: () => any,
+        isBigNumber: () => any,
+
+        isHex: () => any,
+        isHexStrict: () => any,
+
+        keccak256: () => any,
+        leftPad: () => any,
+
+        numberToHex: () => any,
+        padLeft: () => any,
+
+        padRight: () => any,
+        randomHex: () => any,
+
+        rightPad: () => any,
+        // sha3: () => any,
+
+        soliditySha3: () => any,
+        stringToHex: () => any,
+
+        // toAscii: () => any,
+        toBN: () => any,
+
+        toChecksumAddress: () => any,
+        // toDecimal: () => any,
+
+        // toHex: () => any,
+        toTwosComplement: () => any,
+
+        toUtf8: () => any,
+        // toWei: () => any,
+
+        unitMap: () => any,
+        utf8ToHex: () => any,
     }
 
     interface EthApi {
@@ -225,6 +293,7 @@ declare namespace Web3 {
         addCallback(cb: (err: Error, isSyncing: boolean, syncingState: SyncingState) => void): void;
         stopWatching(): void;
     }
+
 }
 /* tslint:disable */
 export = Web3;
