@@ -1,0 +1,13 @@
+{
+  "name": "@types/web3",
+  "version": "0.0.0",
+  "description": "The type definition for web3 package",
+  "types": "index.d.ts",
+  "keywords": [
+    "web3",
+    "types",
+    "typestub"
+  ],
+  "author": "Jake Ferrante",
+  "dependencies": {}
+}
