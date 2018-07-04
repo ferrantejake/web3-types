@@ -160,8 +160,42 @@ declare namespace Web3 {
         rawTransaction: string
     }
 
+    interface Account {
+        address: string,
+        privateKey: string,
+        signTransaction(tx: Transaction, privateKey: string, callback?: (error: Error, signedTransaction: SignedTransaction) => void): Promise<SignedTransaction>,
+        sign(data: any, privateKey: string): any,
+        encrypt(password: string): any[] // kv3 keystore see: http://web3js.readthedocs.io/en/1.0/web3-eth-accounts.html#wallet-encrypt
+    }
+
+    interface WalletApi {
+        [accountId: number]: Account,
+        create(numberOfAccounts: number, entrophy?: string): Account;
+        add(privateKeyOrAccount: string | Account): Account,
+        remove(account: string | number): boolean,
+        clear(): any,
+        encrypt(password: string): any[];
+        decrypt(keystoreArray: any[], password: string): WalletApi, // wallet object
+        save(): any,
+        load(): any,
+        [accountId: string]: Account | any,
+    }
+
     interface AccountApi {
-        signTransaction: (tx: Transaction, privateKey: string, callback?: (error: Error, signedTransaction: SignedTransaction) => void) => Promise<SignedTransaction>
+        signTransaction: (tx: Transaction, privateKey: string, callback?: (error: Error, signedTransaction: SignedTransaction) => void) => Promise<SignedTransaction>,
+        create: (entrophy?: string) => any,
+        privateKeyToAccount: (key: string) => any,
+        /**
+         * @param rawTransaction RLP encoded transaction
+         * @return Ethereum address used to sign transaction
+         */
+        recoverTransaction: (rawTransaction: string) => any,
+        hashMessage: () => any,
+        sign: (data: any, privateKey: string) => any,
+        recover: () => any,
+        encrypt: () => any,
+        decrypt: () => any,
+        wallet: WalletApi
     }
 
     interface EthApi {
