@@ -274,6 +274,8 @@ declare namespace Web3 {
 
         filter(value: string | FilterObject): Web3.FilterResult;
 
+        sendSignedTransaction(data: string, callback: (err: Error, value: string) => void): void;
+
         sendTransaction(txData: TxData): string;
         sendTransaction(txData: TxData, callback: (err: Error, value: string) => void): void;
 
