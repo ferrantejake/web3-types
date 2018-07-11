@@ -279,9 +279,6 @@ declare namespace Web3 {
         sendTransaction(txData: TxData): string;
         sendTransaction(txData: TxData, callback: (err: Error, value: string) => void): void;
 
-        sendRawTransaction(rawTxData: string): string;
-        sendRawTransaction(rawTxData: string, callback: (err: Error, value: string) => void): void;
-
         sign(address: string, data: string): string;
         sign(address: string, data: string, callback: (err: Error, signature: string) => void): void;
 
